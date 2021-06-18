@@ -171,7 +171,7 @@ class PyList:
 if __name__=='__main__':
     example = PyList(['a','b','c','d'], size=3)
     example2 = PyList([1,2,3], 5)
-    print(example)
+    example
 
 
 
