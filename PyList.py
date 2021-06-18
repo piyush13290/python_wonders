@@ -23,10 +23,10 @@ class PyList:
         let's expand the list size by 20% each time this method is called
         '''
 
-        newlen = int(self.size * 1.20) 
+        newlen = int(self.size * 1.50) 
         newlist = [None] * newlen
 
-        for i in range(self.numIems):
+        for i in range(self.numItems):
             newlist[i] = self.items[i]
 
         self.items = newlist
@@ -42,6 +42,8 @@ class PyList:
 
         self.items[self.numItems] = item
         self.numItems += 1
+        
+  
 
 
     def insert(self, i, newitem):
@@ -67,15 +69,20 @@ class PyList:
         else:
             self.append(newitem)
 
+    def __getitem__(self, index):
+        '''
+        getter method
+        '''
 
+        if index >=0 and index < self.numItems:
+            return self.items[index]
 
-
-
+        raise IndexError("Index is out of range for PyList")
 
 
 
 if __name__=='__main__':
-    example = PyList(['a','b','c'], size=10)
+    example = PyList(['a','b','c','d'], size=3)
 
 
     
