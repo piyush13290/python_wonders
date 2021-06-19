@@ -46,8 +46,11 @@ class PyList:
     def insert(self, i, newitem):
         '''
         To insert an item in the list
-        i = the index to insert the new  item
-        newitem = the item which needs to be inserted
+        Warning: as this is a sequencial list, if the index is given more than the numItems, 
+                it will add the itemm at the end of the list, we cant have None in between the list
+        Input:
+            i = the index to insert the new  item
+            newitem = the item which needs to be inserted
         '''
 
         #check 1: if the size of the PyList needs to be expanded
@@ -61,7 +64,7 @@ class PyList:
             for j in range(self.numItems-1, i-1, -1):
                 self.items[j+1] =  self.items[j]
 
-            self.items[i] == newitem
+            self.items[i] = newitem
             self.numItems  += 1
         else:
             self.append(newitem)
@@ -92,10 +95,10 @@ class PyList:
         result = PyList(size = newsize) # to make sure new PyList if of adequet size
 
         for i in range(self.numItems):
-            result.append(i)
+            result.append(self.items[i])
 
         for i in range(other.numItems):
-            result.append(i)
+            result.append(other.items[i])
 
         return result
 
@@ -111,7 +114,9 @@ class PyList:
         for i in range(index, self.numItems-1):
             self.items[i] = self.items[i+1]
         
-        self.numItems -= 1 
+        self.items[self.numItems-1] = None
+        self.numItems -= 1
+  
 
     def __eq__(self, other):
         '''
@@ -168,10 +173,11 @@ class PyList:
         s += "])"
         return s
 
-if __name__=='__main__':
-    example = PyList(['a','b','c','d'], size=3)
-    example2 = PyList([1,2,3], 5)
-    example
+# all testing moved to the test module
+# if __name__=='__main__':
+#     example = PyList(['a','b','c','d'], size=3)
+#     example2 = PyList([1,2,3], 5)
+#     example
 
 
 
